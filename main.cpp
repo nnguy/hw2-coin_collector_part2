@@ -7,6 +7,7 @@ Assignment 2 - This program receives 3 sets of coordinates as command line argum
 #include <stdlib.h>
 #include <cctype>
 #include "point.h"
+#include "world.h"
 using namespace std; 
 
 const int NUM_POINTS = 3; 
@@ -19,21 +20,28 @@ const int NUM_POINTS = 3;
 int main(int argc, char* argv[]){
   int a, b; 
   //check if a proper number of arguments was entered (a valid number of arguments is always an odd number (calling the executable + 2 integers per point)
+/*
+argv[0] = .\main 
+argv[1 and odd numbered argument] = x coordinate, must be between 0 and 10 
+argv[2 and even numbered argument] = y coordinate, must be between 0 and -10 
+
+*/
   if (argc % 2 == 0){
     cout << "Invalid number of arguments. You must specify an integer for each coordinate's X and Y" << endl; 
   }
-  //check if any of the coordinates are invalid (a valid point must be between 0-10 for X and -10-0 for Y)
-    
+
   //if the input passes all of these checks, proceed with adding the points. 
   else{
     for (int i = 1; i+1 < argc; i+=2){
-        cout << i << endl;
-        if (isdigit(*argv[i]) && isdigit(*argv[i+1]) && (i+1 <= argc)){
-          a = atoi(argv[i]); 
-          b = atoi(argv[i+1]); 
-          cout << "a: " << a << endl
-            <<"b: " << b << endl; 
-        }
+        //cout << i << endl;
+      //check for valid X coordinates I
+      if (i % 2 == 1 && argv[i] )
+      if (isdigit(*argv[i]) && isdigit(*argv[i+1]) && (i+1 <= argc)){
+        a = atoi(argv[i]); 
+        b = atoi(argv[i+1]); 
+        cout << "a: " << a << endl
+          <<"b: " << b << endl; 
+      }
       }    
   }
 

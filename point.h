@@ -6,14 +6,18 @@ private:
   int x; 
   int y; 
 public: 
+  Point(){
+    x = 0; 
+    y = 0;
+  }
   Point(int a, int b){
     x = a; 
     y = b; 
   }
   void print() const;
   void set(int, int); 
-  int getX() {return x;}
-  int getY() {return y;}
+  int getX() const {return x;}
+  int getY() const {return y;}
 
 };
 
