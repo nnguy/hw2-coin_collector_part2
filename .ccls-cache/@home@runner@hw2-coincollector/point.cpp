@@ -16,6 +16,12 @@ void Point::print() const{
 }
 
 void Point::set(int a, int b){
-  x = a; 
-  y = b; 
+  if ((a < 0 && a > 10 ) || (b < -10 || b > 0)){
+    cout << "Invalid parameters, please input valid parameters " << endl; 
+  }
+  else{
+    cout << "correct parameters \n"; 
+    x = a; 
+    y = b;     
+  }
 }
