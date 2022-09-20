@@ -8,6 +8,7 @@ Assignment 2 - This program receives 3 sets of coordinates as command line argum
 #include <cctype>
 #include "point.h"
 #include "world.h"
+#include "robot.h"
 
 using namespace std; 
 
@@ -21,6 +22,7 @@ const int NUM_POINTS = 3;
 int main(int argc, char* argv[]){
   int a, b; 
   World w; 
+  Robot r; 
   
   //check if a proper number of arguments was entered (a valid number of arguments is always an odd number (calling the executable + 2 integers per point)
 /*
@@ -72,6 +74,35 @@ argv[2 and even numbered argument] = y coordinate, must be between 0 and -10
 
     }    
   w.print(); 
-  
+  r.init(); 
+  r.print();
+  r.setOrientation(NORTH); 
+  r.print(); 
+  r.forward(); 
+  r.print();
+  r.turnCW(); 
+  r.print(); 
+  r.turnAntiCW(); 
+  r.print(); 
+  r.forward(); 
+  r.forward(); 
+  r.forward(); 
+  r.forward(); 
+  r.forward(); 
+  r.forward(); 
+  r.forward(); 
+  r.forward(); 
+  r.forward(); 
+  r.print(); 
+  if (r.northEnd()){
+    cout << "reached the north end" << endl; 
+  }
+  r.turnCW(); 
+  for (int i = 0; i < 10; i++){
+    r.forward(); 
+  }
+  r.print(); 
   return 0;
-}}
+}
+  }
+
