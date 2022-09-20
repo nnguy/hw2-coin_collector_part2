@@ -101,6 +101,8 @@ argv[2 and even numbered argument] = y coordinate, must be between 0 and -10
   for (int i = 0; i < 10; i++){
     r.forward(); 
   }
+  r.print();
+  r.zig(); 
   r.print(); 
   return 0;
 }
