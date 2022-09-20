@@ -1,11 +1,12 @@
 #include <iostream> 
 #include "point.h"
 #include "world.h"
+#include "robot.h"
 
 using namespace std; 
 
-
 World::World(){
+  cout << "constructor called" << endl; 
 }
 
 void World::print() const{
