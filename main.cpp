@@ -15,9 +15,6 @@ using namespace std;
 const int NUM_POINTS = 3; 
 
 
-//I'm getting a segfault lol 
-//review this https://stackoverflow.com/questions/25633448/segmentation-fault-while-using-argv
-//I avoided the segfault by changing i < argc to i+1 < argc (we dont want the loop to run on the last element anyway...)
 
 int main(int argc, char* argv[]){
   int a, b; 
@@ -52,12 +49,12 @@ argv[2 and even numbered argument] = y coordinate, must be between 0 and -10
       }
 
       //check if the odd-numbered parameters (x) are negative or greater than 10
-      else if (argv[i][0] == '-' || atoi(argv[i]) > 10 ){
+      else if (argv[i][0] == '-' || atoi(argv[i]) > 9 ){
         cout << "error - out of bounds X parameter " << endl; 
       }
 
       //check if the even-numbered parameter is valid is 0 or negative 
-      else if (strtol(argv[i+1], &char_ptr, 10) > 0 || strtol(argv[i+1], &char_ptr, 10) < -10){
+      else if (strtol(argv[i+1], &char_ptr, 10) > 0 || strtol(argv[i+1], &char_ptr, 10) < -9){
         cout << "error, out of bounds Y parameter " << endl; 
       }
         
@@ -73,38 +70,50 @@ argv[2 and even numbered argument] = y coordinate, must be between 0 and -10
 
 
     }    
-  w.print(); 
+
+  //navigate across the entire map 
   r.init(); 
-  r.print();
-  r.setOrientation(NORTH); 
-  r.print(); 
-  r.forward(); 
-  r.print();
-  r.turnCW(); 
-  r.print(); 
-  r.turnAntiCW(); 
-  r.print(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
   r.forward(); 
   r.print(); 
-  if (r.northEnd()){
-    cout << "reached the north end" << endl; 
-  }
-  r.turnCW(); 
-  for (int i = 0; i < 10; i++){
-    r.forward(); 
-  }
-  r.print();
-  r.zig(); 
-  r.print(); 
+
+  //r.getX() <= 9
+  bool reached_x = false; 
+  bool reached_y = false;
+    
+  while ((r.getY() != -9) || (r.getX() != 0)){
+
+    if (r.getX() == 0 && r.getY() == -9){
+      cout << "stop!!!" << endl; 
+      break; 
+    }
+    else if (r.getX() == 9 && r.getY() != 9){
+      r.zig(); 
+      r.print();
+      r.forward(); 
+      r.print(); 
+    }
+    else if (r.getX() == 0 && r.getY() != 9){
+      r.zag();
+      r.print(); 
+      r.forward(); 
+      r.print(); 
+    }
+
+    else{
+      r.forward(); 
+      r.print(); 
+    }
+    
+  }  
+    /*
+    cout << "stopped " << endl; 
+    cout << "x: "<< r.getX() << " y: " << r.getY() << endl;
+    cout << "total truth value " << static_cast<int>(r.getY() != -9 && r.getX() != 0) << endl; 
+    cout << "truth value of r.getY() != -9: " << static_cast<int>(r.getY() != -9) << endl; 
+    cout << "truth value of r.getX() != 0: " << static_cast<int>(r.getX() != 0) << endl; 
+    */
+  cout << "exiting" << endl; 
   return 0;
 }
-  }
+}
 

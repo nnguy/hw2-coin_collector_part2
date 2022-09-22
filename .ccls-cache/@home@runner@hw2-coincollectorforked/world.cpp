@@ -7,7 +7,6 @@ using namespace std;
 
 World::World(){
   cout << "constructor called" << endl; 
-  
 }
 
 void World::print() const{
