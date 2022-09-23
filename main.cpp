@@ -104,7 +104,14 @@ argv[2 and even numbered argument] = y coordinate, must be between 0 and -10
       r.print(); 
     }
     
-  }  
+  }
+  w.print();
+  w.set(0,1,-4); 
+  w.set(1,3,-3); 
+  w.set(1,10,-2); 
+  w.set(1,4,10); 
+  w.set(2,5,-5);
+  w.print();
     /*
     cout << "stopped " << endl; 
     cout << "x: "<< r.getX() << " y: " << r.getY() << endl;

@@ -29,6 +29,14 @@ void Robot::init() {
   orientation = EAST;
 }
 
+int Robot::getX(){
+  return location.getX(); 
+}
+
+int Robot::getY(){
+  return location.getY(); 
+}
+
 void Robot::print() const {
   cout << "I am at (" << location.getX() << ", " << location.getY()
        << ") and I am facing ";
@@ -86,19 +94,19 @@ bool Robot::forward() {
 
 bool Robot::turnCW(){
   if (orientation == NORTH){
-    orientation = EAST;
+    orientation = WEST;
     return true; 
   }
   else if (orientation == EAST){
-    orientation = SOUTH;
+    orientation = NORTH;
     return true; 
   }
   else if (orientation == SOUTH){
-    orientation = WEST; 
+    orientation = EAST; 
     return true; 
   }
   else if (orientation == WEST){
-    orientation = NORTH; 
+    orientation = SOUTH; 
     return true; 
   }
   else{
@@ -108,19 +116,19 @@ bool Robot::turnCW(){
 
 bool Robot::turnAntiCW(){
   if (orientation == NORTH){
-    orientation = WEST;
+    orientation = EAST;
     return true; 
   }
   else if (orientation == WEST){
-    orientation = SOUTH;
+    orientation = NORTH;
     return true; 
   }
   else if (orientation == SOUTH){
-    orientation = EAST; 
+    orientation = WEST; 
     return true; 
   }
   else if (orientation == EAST){
-    orientation = NORTH; 
+    orientation = SOUTH; 
     return true; 
   }
   else{
@@ -147,15 +155,12 @@ bool Robot::westEnd(){
 bool Robot::zig(){
   if (orientation == EAST && eastEnd()){
     turnCW();
-    print(); 
     forward();
-    print(); 
     turnCW();
-    print(); 
     return true; 
   }
   else{
-    print();
+    cout << "did not turn CW" << endl; 
     return false; 
   }
 }
@@ -163,15 +168,11 @@ bool Robot::zig(){
 bool Robot::zag(){
   if (orientation == WEST && westEnd()){
     turnAntiCW();
-    print(); 
     forward(); 
-    print(); 
     turnAntiCW();
-    print(); 
     return true; 
   }
   else{
-    print(); 
     return false; 
   }
 }

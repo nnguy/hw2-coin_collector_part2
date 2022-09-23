@@ -6,12 +6,14 @@
 using namespace std; 
 
 World::World(){
-  cout << "constructor called" << endl; 
+  cout << "world constructor called" << endl; 
+  for (int i = 0; i < )
+  
 }
 
 void World::print() const{
   for (int i = 0; i < MAX_POINTS; i++){
-    cout << "Coordinate " << i+1 <<" : (" << points[i].getX() << ", " << points[i].getY() << ")" << endl; 
+    cout << "Coordinate " << i+1 <<" : (" << points[i]->getX() << ", " << points[i]->getY() << ")" << endl; 
   }
 }
 
@@ -20,6 +22,6 @@ void World::set(int i, int x, int y){
     cout << "Error, i must be " << MAX_POINTS << " or less " << endl; 
   }
   else{
-    points[i].set(x,y); 
+    points[i]->set(x,y); 
   }
 }

@@ -70,40 +70,50 @@ argv[2 and even numbered argument] = y coordinate, must be between 0 and -10
 
 
     }    
-  w.print(); 
+
+  //navigate across the entire map 
   r.init(); 
-  r.print();
-  r.setOrientation(NORTH); 
-  r.print(); 
-  r.forward(); 
-  r.print();
-  r.turnCW(); 
-  r.print(); 
-  r.turnAntiCW(); 
-  r.print(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
-  r.forward(); 
   r.forward(); 
   r.print(); 
-  if (r.northEnd()){
-    cout << "reached the north end" << endl; 
-  }
-  r.turnCW(); 
-  for (int i = 0; i < 9; i++){
-    r.forward(); 
-  }
-  r.print();
-  r.zig(); 
-  r.print(); 
-  r.setLocation(0,-10);
-  r.print();  
+
+  //r.getX() <= 9
+  bool reached_x = false; 
+  bool reached_y = false;
+    
+  while ((r.getY() != -9) || (r.getX() != 0)){
+
+    if (r.getX() == 0 && r.getY() == -9){
+      cout << "stop!!!" << endl; 
+      break; 
+    }
+    else if (r.getX() == 9 && r.getY() != 9){
+      r.zig(); 
+      r.print();
+      r.forward(); 
+      r.print(); 
+    }
+    else if (r.getX() == 0 && r.getY() != 9){
+      r.zag();
+      r.print(); 
+      r.forward(); 
+      r.print(); 
+    }
+
+    else{
+      r.forward(); 
+      r.print(); 
+    }
+    
+  }  
+    /*
+    cout << "stopped " << endl; 
+    cout << "x: "<< r.getX() << " y: " << r.getY() << endl;
+    cout << "total truth value " << static_cast<int>(r.getY() != -9 && r.getX() != 0) << endl; 
+    cout << "truth value of r.getY() != -9: " << static_cast<int>(r.getY() != -9) << endl; 
+    cout << "truth value of r.getX() != 0: " << static_cast<int>(r.getX() != 0) << endl; 
+    */
+  cout << "exiting" << endl; 
   return 0;
 }
-  }
+}
 

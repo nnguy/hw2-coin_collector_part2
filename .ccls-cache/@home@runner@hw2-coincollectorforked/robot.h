@@ -25,6 +25,8 @@ public:
   ~Robot(); 
   void setLocation(int, int); 
 //void init() that initializes the robot's location to 0,0 and current orientation is east 
+  int getX();
+  int getY(); 
 
   void init();
 	//void print const that prints the current location in a pretty format like "I am at 0,0 and I am facing east 

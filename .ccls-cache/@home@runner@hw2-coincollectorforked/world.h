@@ -8,7 +8,7 @@ const int MAX_POINTS = 3;
 
 class World{
 private:
-  Point points[MAX_POINTS]; 
+  Point* points[MAX_POINTS]; 
 public:
   World(); 
   void print() const; 
