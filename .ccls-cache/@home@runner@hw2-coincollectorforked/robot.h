@@ -14,6 +14,7 @@ class Robot {
 private: 
 	//a point object to store the robot's current location 
 	Point location;
+  int coinsFound; 
 
 	//an enumerated data type called orientation_type that defines the 4 directions the robot can be facing (n,e,s,w) or orientation 
 
@@ -27,7 +28,7 @@ public:
 //void init() that initializes the robot's location to 0,0 and current orientation is east 
   int getX();
   int getY(); 
-
+  int getCoinsFound();
   void init();
 	//void print const that prints the current location in a pretty format like "I am at 0,0 and I am facing east 
   void print() const; 
@@ -59,6 +60,10 @@ public:
 
   //bool zig, check if the robot was moving west, if it reached the west edge, turn counterclockwise, move south one, and then turn counterclockwise again 
   bool zig(); 
+
+  bool checkLocation(Point); 
+  bool checkLocation(Point*); 
+  void updateCoinsFound(int);
 
 };
 #endif

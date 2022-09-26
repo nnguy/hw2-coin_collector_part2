@@ -11,7 +11,7 @@ using namespace std;
 
 
 void Point::print() const{
-  cout << "x: " << x << endl
+  cout << "x: " << x << " "
   << "y: " << y << endl; 
 }
 

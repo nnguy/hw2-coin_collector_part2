@@ -12,9 +12,6 @@ Assignment 2 - This program receives 3 sets of coordinates as command line argum
 
 using namespace std; 
 
-const int NUM_POINTS = 3; 
-
-
 
 int main(int argc, char* argv[]){
   int a, b; 
@@ -76,10 +73,19 @@ argv[2 and even numbered argument] = y coordinate, must be between 0 and -10
   r.forward(); 
   r.print(); 
 
+  //I dont think I need reached_x and reached_y
   //r.getX() <= 9
   bool reached_x = false; 
   bool reached_y = false;
-    
+
+  w.print();
+  w.set(0,1,-4); 
+  w.set(1,3,-3); 
+  w.set(1,10,-2); 
+  w.set(1,4,10); 
+  w.set(2,5,-5);
+  w.print();
+  //a while loop to make the robot search the entire map
   while ((r.getY() != -9) || (r.getX() != 0)){
 
     if (r.getX() == 0 && r.getY() == -9){
@@ -103,8 +109,50 @@ argv[2 and even numbered argument] = y coordinate, must be between 0 and -10
       r.forward(); 
       r.print(); 
     }
+
     
-  }  
+  }
+  int stepsTravelled = 0; 
+  r.init(); 
+  while (((r.getY() != -9) || (r.getX() != 0)) && r.getCoinsFound() < MAX_POINTS){
+
+    if (r.getX() == 0 && r.getY() == -9){
+      cout << "stop!!!" << endl; 
+      break; 
+    }
+    else if (r.getX() == 9 && r.getY() != 9){
+      r.zig();
+      r.forward(); 
+    }
+    else if (r.getX() == 0 && r.getY() != 9){
+      r.zag();
+      r.forward(); 
+    }
+
+    else{
+      r.forward(); 
+    }
+    stepsTravelled++;
+    for (int i = 0; i < MAX_POINTS && r.getCoinsFound() < MAX_POINTS; i++){
+      if (w.isPointExistent(i)){
+        if (w.isPointExistent(i) && r.checkLocation(w.getPoint(i))){
+          cout << "found a coin at ";
+          w.getPoint(i).print();
+          r.updateCoinsFound(1);
+          w.releasePoint(i); 
+          cout << "found " << r.getCoinsFound() << " coins so far" << endl; 
+        }
+        else {
+          r.print();
+          cout << " and a coin was not found" << endl; 
+        }
+      }
+
+    } 
+    
+  }
+    cout << "All coins found in " << stepsTravelled << " steps" << endl; 
+
     /*
     cout << "stopped " << endl; 
     cout << "x: "<< r.getX() << " y: " << r.getY() << endl;

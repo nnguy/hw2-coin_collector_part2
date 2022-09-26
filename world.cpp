@@ -7,7 +7,7 @@ using namespace std;
 
 World::World(){
   cout << "world constructor called" << endl; 
-  for (int i = 0; i < 3; i++){
+  for (int i = 0; i < MAX_POINTS; i++){
     points[i] = new Point; 
   }
   
@@ -39,4 +39,16 @@ void World::set(int i, int x, int y){
   else{
     points[i]->set(x,y); 
   }
+}
+
+Point World::getPoint(int i){
+  return *(points[i]); 
+}
+
+void World::releasePoint(int i){
+  delete points[i];
+  points[i] = nullptr; 
+}
+bool World::isPointExistent(int i){
+  return (points[i] != nullptr) ? true : false; 
 }

@@ -7,6 +7,7 @@ using namespace std;
 Robot::Robot() {
   location.set(0, 0);
   orientation = EAST;
+  coinsFound = 0; 
 }
 
 Robot::~Robot() {
@@ -27,6 +28,7 @@ void Robot::setLocation(int x, int y){
 void Robot::init() {
   location.set(0, 0);
   orientation = EAST;
+  coinsFound = 0;
 }
 
 int Robot::getX(){
@@ -35,6 +37,10 @@ int Robot::getX(){
 
 int Robot::getY(){
   return location.getY(); 
+}
+
+int Robot::getCoinsFound(){
+  return coinsFound; 
 }
 
 void Robot::print() const {
@@ -175,4 +181,20 @@ bool Robot::zag(){
   else{
     return false; 
   }
+}
+
+//not sure if this will work with a Point pointer...
+bool Robot::checkLocation(Point p){
+  return (location.getX() == p.getX() && location.getY() == p.getY()) ? true : false; 
+}
+
+//probably will be safer to overload and write one with a Point pointer. 
+
+bool Robot::checkLocation(Point *p){
+  //I used both dereferencing and the arrow operator to remind myself that I can do both when dealing with object pointers
+    return (location.getX() == (*p).getX() && location.getY() == p->getY()) ? true : false;
+}
+
+void Robot::updateCoinsFound(int i){
+  coinsFound += i; 
 }
