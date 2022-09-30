@@ -115,6 +115,8 @@ argv[2 and even numbered argument] = y coordinate, must be between 0 and -10
   }
   int stepsTravelled = 0; 
   r.init(); 
+
+  //demo code that makes the robot search for 3 coins 
   cout << endl << endl << "Robot has respawned to 0,0 and is now searching for the three coins " << endl; 
   while (((r.getY() != -9) || (r.getX() != 0)) && r.getCoinsFound() < MAX_POINTS){
 

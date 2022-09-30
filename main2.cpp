@@ -6,6 +6,7 @@ Assignment 2.5 - This program utilizes the Point, World, and Robot classes to
 */
 #include <iostream>
 #include <stdlib.h>
+#include <ctime>
 #include <cctype>
 #include "point.h"
 #include "world.h"
@@ -15,8 +16,12 @@ using namespace std;
 
 int main(int argc, char* argv[]){
     //create world, robot
-    World w; 
-    Robot r; 
+    World w;
+    //Player 1 is the human-controlled robot, Player 2 is the computer-controlled robot 
+    Robot p1, p2;  
+    
+    
+    
 
     //check for command line input for the coordinates 
     //case of argc = 1, that means no command line arguments wre included. So have the user input 

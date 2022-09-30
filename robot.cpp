@@ -198,3 +198,4 @@ bool Robot::checkLocation(Point *p){
 void Robot::updateCoinsFound(int i){
   coinsFound += i; 
 }
+
