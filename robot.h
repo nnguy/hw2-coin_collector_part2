@@ -64,6 +64,7 @@ public:
   bool checkLocation(Point); 
   bool checkLocation(Point*); 
   void updateCoinsFound(int);
+  void moveOnce(char); 
 
 };
 #endif

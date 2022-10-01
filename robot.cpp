@@ -199,3 +199,45 @@ void Robot::updateCoinsFound(int i){
   coinsFound += i; 
 }
 
+void Robot::moveOnce(char c){
+  switch (c){
+    case 'w':
+      if (northEnd()){
+        cout << "bumped into the north wall " << endl; 
+      }
+      else{
+        setOrientation(NORTH); 
+        forward(); 
+      }
+      break; 
+    case 'a': 
+      if (westEnd()){
+        cout << "bumped into the west wall " << endl; 
+      }
+      else{
+        setOrientation(WEST); 
+        forward(); 
+      }
+      break; 
+    case 's':
+      if (southEnd()){
+        cout << "bumped into the south wall " << endl; 
+      }
+      else{
+        setOrientation(SOUTH); 
+        forward(); 
+      }
+      break;  
+    case 'd':
+      if (eastEnd()){
+        cout << "bumped into the east wall " << endl; 
+      }
+      else{
+        setOrientation(EAST); 
+        forward(); 
+      }
+      break;
+    default:
+      cout << "invalid input " << endl; 
+  }
+}
