@@ -62,6 +62,26 @@ void Robot::print() const {
   }
 }
 
+void Robot::print(int i) const{
+  cout << "Player " << i << " is at (" << location.getX() << ", " << location.getY()
+      << ") and is am facing ";
+  switch (orientation) {
+  case NORTH:
+    cout << "north" << endl;
+    break;
+  case EAST:
+    cout << "east" << endl;
+    break;
+  case SOUTH:
+    cout << "south" << endl;
+    break;
+  case WEST:
+    cout << "west" << endl;
+    break;
+  }
+
+}
+
 void Robot::setOrientation(Direction d) { orientation = d; }
 
 bool Robot::forward() {

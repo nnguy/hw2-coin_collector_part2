@@ -1,13 +1,14 @@
 /*
 Nelson Nguy 
 CSC 211H
-Assignment 2.5 - This program utilizes the Point, World, and Robot classes to 
+Assignment 2.5 - This program utilizes the Point, World, and Robot classes to create a human v computer game to see who can claim the most coins. 
 
 */
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
 #include <cctype>
+#include <string>
 #include "point.h"
 #include "world.h"
 #include "robot.h"
@@ -26,8 +27,49 @@ int main(int argc, char* argv[]){
     srand(time(0)); 
     int x = 0; 
 
+    int x_coord = 0; 
+    int y_coord = 0; 
 
-    for (int i = 0; i < 10; i++){
+    for (int j = 0; j < MAX_POINTS; j++){
+        x_coord = rand() % 10;
+        y_coord = (rand() % 10) * -1; 
+        //this checks if the same coordinates are re-rolled more than once 
+        if (w.isPointExistent(x_coord,y_coord)){
+            j--; 
+        }
+        else{
+            w.set(j, x_coord, y_coord); 
+        }
+    }
+    w.print(); 
+
+    // for (int i = 0; i < 10; i++){
+    //     x = (rand() % 4) + 1;
+    //     switch (x){
+    //         case 1:
+    //             p1.moveOnce('w'); 
+    //             break;  
+    //         case 2: 
+    //             p1.moveOnce('a'); 
+    //             break; 
+    //         case 3: 
+    //             p1.moveOnce('s'); 
+    //             break; 
+    //         case 4: 
+    //             p1.moveOnce('d'); 
+    //             break;
+    //         default: 
+    //             cout << "error, invalid value" << endl; 
+    //             break; 
+    //     }
+    //     //this line is an ANSI escape sequence that only works on Linux (thankfully, WSL and Replit runs on Linux)
+    //     cout<< u8"\033[2J\033[1;1H"; 
+    //     p1.print(); 
+
+    // }
+    int total_coins_found = 0; 
+    while (total_coins_found < MAX_POINTS){
+        //player1movement - computer player
         x = (rand() % 4) + 1;
         switch (x){
             case 1:
@@ -46,22 +88,51 @@ int main(int argc, char* argv[]){
                 cout << "error, invalid value" << endl; 
                 break; 
         }
-        p1.print(); 
-
-    }
-    /*
-    while (true){
+        //player2 movement - human player 
         cout << "Input one of the following to move your robot" << endl; 
         cout << "   ^" << endl;
         cout << "   w" << endl; 
         cout << "<a s d>" << endl;
         cout << "   v" << endl;  
         cin >> c; 
-        p2.moveOnce(c); 
-        p2.print(); 
-        cout << endl; 
+        p2.moveOnce(c);
+
+
+        //ANSI escape sequence that clears the console - commented out to make sure stuff is working properly
+        //cout<< u8"\033[2J\033[1;1H";  
+        //p2.print(); 
+        for (int i = 0; i < MAX_POINTS; i++){
+            if (w.isPointExistent(i)){
+                    if (w.isPointExistent(i) && p2.checkLocation(w.getPoint(i))){
+                        cout << "Player 2 found a coin at ";
+                        w.getPoint(i).print();
+                        p2.updateCoinsFound(1);
+                        total_coins_found++; 
+                        w.releasePoint(i); 
+                        cout << "found " << p2.getCoinsFound() << " coins so far" << endl;
+
+                    }
+                    else if (w.isPointExistent(i) && p1.checkLocation(w.getPoint(i))){
+                        cout << "Player 1 found a coin at ";
+                        w.getPoint(i).print();
+                        p1.updateCoinsFound(1);
+                        total_coins_found++; 
+                        w.releasePoint(i); 
+                        cout << "found " << p1.getCoinsFound() << " coins so far" << endl; 
+                    }
+                else {
+                    p1.print(1);
+                    p2.print(2);
+                    cout << " and coin " << i+1 << " is not here" << endl; 
+                }
+            }
+        }
+        cout << total_coins_found << " coins found" << endl; 
+
     }
-    */
+    cout << "Player 1 has " << p1.getCoinsFound() << " coins " << endl; 
+    cout << "Player 2 has " << p2.getCoinsFound() << " coins " << endl; 
+    
     return 0; 
     
     
@@ -75,4 +146,5 @@ int main(int argc, char* argv[]){
     //create a funciton in robot that moves via random directions
     //create a function in robot that receives arrow key input (or wasd)
     //clear the screen after every movement 
+
 }

@@ -52,3 +52,13 @@ void World::releasePoint(int i){
 bool World::isPointExistent(int i){
   return (points[i] != nullptr) ? true : false; 
 }
+
+bool World::isPointExistent(int x, int y){
+  for (int i = 0; i < MAX_POINTS; i++){
+    if (x == points[i]->getX() && y == points[i]->getY()){
+      return true; 
+    }
+    else
+      return false; 
+  }
+}

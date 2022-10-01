@@ -17,6 +17,7 @@ public:
   Point getPoint(int); 
   void releasePoint(int); 
   bool isPointExistent(int); 
+  bool isPointExistent(int, int); 
 };
 
 

@@ -32,6 +32,7 @@ public:
   void init();
 	//void print const that prints the current location in a pretty format like "I am at 0,0 and I am facing east 
   void print() const; 
+  void print(int) const; 
 	//void setOrientation (orientation_type orientation); which sets the value of the robot's orientation data member 
   void setOrientation(Direction); 
 
