@@ -2,7 +2,7 @@
 Nelson Nguy 
 CSC 211H
 Assignment 2.5 - This program utilizes the Point, World, and Robot classes to create a human v computer game to see who can claim the most coins. 
-
+ 
 */
 #include <iostream>
 #include <stdlib.h>

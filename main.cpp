@@ -2,7 +2,7 @@
 Nelson Nguy
 CSC 211H 
 Assignment 2 - This program receives 3 sets of coordinates as command line arguments to create coordiantes of coins that the roomba is supposed to search for. 
-*/
+*/ 
 #include <iostream> 
 #include <stdlib.h>
 #include <cctype>
