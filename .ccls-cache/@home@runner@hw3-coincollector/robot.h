@@ -29,9 +29,9 @@ public:
   bool operator++(int); 
   bool operator--(); 
   bool operator--(int); 
-  int operator-(const Robot&); 
-  bool operator==(const Robot&); 
-  Robot (const Robot&);
+  int operator-(Robot&); 
+  bool operator==(Robot&); 
+  Robot (Robot&);
 
   void setLocation(int, int); 
 //void init() that initializes the robot's location to 0,0 and current orientation is east 

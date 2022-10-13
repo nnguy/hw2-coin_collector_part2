@@ -2,6 +2,7 @@
 #include "point.h"
 #include "world.h"
 #include <iostream>
+#include <cmath> 
 using namespace std;
 
 Robot::Robot() {
@@ -16,7 +17,6 @@ Robot::~Robot() {
 
 //++ operator for prefix 
 bool Robot::operator++(){
-  cout << "this does something " << endl;
   forward(); 
   return true; 
 }
@@ -34,6 +34,23 @@ bool Robot::operator--(int a){
   else
     return false; 
 }
+
+int Robot::operator-(Robot& rhs){
+  //distance difference is measured as sum of difference in x vs difference in y values 
+  return abs(this->getX() - rhs.getX()) + abs(this->getY() - rhs.getY()); 
+}
+
+bool Robot::operator==(Robot& rhs){
+  return ((this->getX() == rhs.getX()) && (this->getY() == rhs.getY()));
+}
+
+Robot::Robot(Robot& r){
+  Robot z; 
+  z.setLocation(r.getX(), r.getY()); 
+  z.coinsFound = r.getCoinsFound(); 
+  z.setOrientation(r.orientation); 
+}
+
 void Robot::setLocation(int x, int y){
   if (x > 9 || x < 0){
     cout << "Invalid X location" << endl; 
